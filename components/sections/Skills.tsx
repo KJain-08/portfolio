@@ -3,8 +3,7 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { PhoneForSection } from '../PhoneParallax'
-import { useState } from 'react'
-import { ChevronRight, Smartphone, Globe, Server, Database, Plug, Rocket } from 'lucide-react'
+import { Smartphone, Globe, Server, Database, Plug, Rocket } from 'lucide-react'
 
 const skills = [
   {
@@ -53,23 +52,158 @@ const skills = [
 
 export default function Skills() {
   const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
-  const [flippedCards, setFlippedCards] = useState<Set<number>>(new Set())
-  
-  const toggleFlip = (index: number) => {
-    setFlippedCards(prev => {
-      const newSet = new Set(prev)
-      if (newSet.has(index)) {
-        newSet.delete(index)
-      } else {
-        newSet.add(index)
-      }
-      return newSet
-    })
-  }
   
   return (
-    <section id="skills" className="min-h-screen w-full py-12 px-6 relative">
+    <section id="skills" className="min-h-screen w-full py-12 px-6 relative overflow-hidden">
       <PhoneForSection sectionId="skills" />
+      
+      {/* Moon-like gradient backgrounds */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 right-10 w-[600px] h-[600px] bg-gradient-radial from-purple-500/10 via-purple-500/5 to-transparent rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-10 w-[550px] h-[550px] bg-gradient-radial from-orange-500/10 via-orange-500/5 to-transparent rounded-full blur-3xl" />
+        <div className="absolute top-1/3 left-1/2 w-[400px] h-[400px] bg-gradient-radial from-cyan-500/8 via-cyan-500/3 to-transparent rounded-full blur-2xl" />
+      </div>
+      
+      {/* Animated floating objects - Mobile only */}
+      <div className="md:hidden absolute inset-0 pointer-events-none z-10">
+        {/* Floating blob 1 - Purple/Pink */}
+        <motion.div
+          animate={{ 
+            x: [0, 55, -45, 0],
+            y: [0, -55, 35, 0],
+            scale: [1, 1.25, 0.85, 1],
+          }}
+          transition={{ 
+            duration: 17, 
+            repeat: Infinity, 
+            ease: 'easeInOut' 
+          }}
+          className="absolute top-24 left-8 w-38 h-38 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-full blur-2xl"
+        />
+        
+        {/* Floating blob 2 - Cyan/Blue */}
+        <motion.div
+          animate={{ 
+            x: [0, -55, 70, 0],
+            y: [0, 60, -45, 0],
+            scale: [1, 0.9, 1.25, 1],
+          }}
+          transition={{ 
+            duration: 21, 
+            repeat: Infinity, 
+            ease: 'easeInOut',
+            delay: 4
+          }}
+          className="absolute top-2/3 right-10 w-42 h-42 bg-gradient-to-br from-cyan-500/20 to-blue-500/20 rounded-full blur-2xl"
+        />
+        
+        {/* Floating blob 3 - Orange/Yellow */}
+        <motion.div
+          animate={{ 
+            x: [0, 65, -55, 0],
+            y: [0, -45, 50, 0],
+            scale: [1, 1.2, 0.9, 1],
+          }}
+          transition={{ 
+            duration: 19, 
+            repeat: Infinity, 
+            ease: 'easeInOut',
+            delay: 2
+          }}
+          className="absolute bottom-1/4 left-12 w-36 h-36 bg-gradient-to-br from-orange-500/20 to-yellow-500/20 rounded-full blur-2xl"
+        />
+        
+        {/* Floating circles */}
+        <motion.div
+          animate={{ 
+            y: [0, -70, 0],
+            opacity: [0.3, 0.6, 0.3]
+          }}
+          transition={{ 
+            duration: 10, 
+            repeat: Infinity, 
+            ease: 'easeInOut',
+            delay: 1
+          }}
+          className="absolute top-1/2 right-1/4 w-18 h-18 border-2 border-pink-500/30 rounded-full"
+        />
+        
+        <motion.div
+          animate={{ 
+            x: [0, 40, 0],
+            y: [0, -60, 0],
+          }}
+          transition={{ 
+            duration: 8, 
+            repeat: Infinity, 
+            ease: 'easeInOut',
+            delay: 2
+          }}
+          className="absolute bottom-1/3 left-1/3 w-2 h-2 bg-cyan-400/50 rounded-full"
+        />
+        
+        {/* More animated elements */}
+        <motion.div
+          animate={{ 
+            x: [0, 50, -40, 0],
+            y: [0, -50, 40, 0],
+            scale: [1, 1.2, 0.85, 1],
+          }}
+          transition={{ 
+            duration: 16, 
+            repeat: Infinity, 
+            ease: 'easeInOut',
+            delay: 3
+          }}
+          className="absolute top-1/3 right-1/3 w-32 h-32 bg-gradient-to-br from-rose-500/15 to-red-500/15 rounded-full blur-xl"
+        />
+        
+        <motion.div
+          animate={{ 
+            x: [0, -55, 45, 0],
+            y: [0, 45, -50, 0],
+            scale: [1, 0.9, 1.15, 1],
+          }}
+          transition={{ 
+            duration: 18, 
+            repeat: Infinity, 
+            ease: 'easeInOut',
+            delay: 6
+          }}
+          className="absolute bottom-1/2 right-1/4 w-35 h-35 bg-gradient-to-br from-emerald-500/15 to-teal-500/15 rounded-full blur-xl"
+        />
+        
+        <motion.div
+          animate={{ 
+            y: [0, 75, 0],
+            x: [0, 30, 0],
+            opacity: [0.3, 0.6, 0.3],
+            rotate: [0, 360, 0]
+          }}
+          transition={{ 
+            duration: 12, 
+            repeat: Infinity, 
+            ease: 'easeInOut',
+            delay: 4
+          }}
+          className="absolute top-2/3 left-1/4 w-16 h-16 border border-orange-500/25 rounded-full"
+        />
+        
+        <motion.div
+          animate={{ 
+            x: [0, -30, 0],
+            y: [0, 50, 0],
+          }}
+          transition={{ 
+            duration: 8, 
+            repeat: Infinity, 
+            ease: 'easeInOut',
+            delay: 3
+          }}
+          className="absolute top-1/2 right-2/3 w-3 h-3 bg-rose-400/60 rounded-full"
+        />
+      </div>
+      
       <div className="max-w-6xl mx-auto md:ml-10" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -85,136 +219,33 @@ export default function Skills() {
           </p>
         </motion.div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {skills.map((skill, index) => {
-            const isFlipped = flippedCards.has(index)
-            
-            return (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+          {skills.map((skill, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="relative"
-              style={{ perspective: '1000px' }}
+              className="card-hover bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl md:rounded-3xl p-4 md:p-6 border border-gray-700"
             >
-              {/* Mobile: Flip Card */}
-              <motion.div
-                animate={{ y: [0, -8, 0] }}
-                transition={{
-                  y: {
-                    duration: 2.5,
-                    repeat: Infinity,
-                    ease: 'easeInOut',
-                    delay: index * 0.2
-                  }
-                }}
-                className="md:hidden h-56"
-              >
-                <div 
-                  className={`relative w-full transition-transform duration-500 cursor-pointer`}
-                  style={{
-                    transformStyle: 'preserve-3d',
-                    transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)'
-                  }}
-                  onClick={() => toggleFlip(index)}
-                >
-                  {/* Front Side - Mobile Only */}
-                  <div 
-                    className={`relative w-full h-56 rounded-3xl p-6 border-[0.5px] border-white/25 flex items-center justify-center overflow-hidden`}
-                    style={{ 
-                      backfaceVisibility: 'hidden',
-                      background: 'rgba(255, 255, 255, 0.1)',
-                      backdropFilter: 'blur(20px) saturate(180%)',
-                      WebkitBackdropFilter: 'blur(20px) saturate(180%)',
-                      boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.37), inset 0 0 0 0.5px rgba(255, 255, 255, 0.2)',
-                      transform: 'translateZ(20px)'
-                    }}
-                  >
-                    {/* Subtle gradient tint from skill color */}
-                    <div className={`absolute inset-0 bg-gradient-to-br ${skill.color} opacity-65`} />
-                    {/* Top glass highlight */}
-                    <div className="absolute top-0 left-0 right-0 h-1/3 bg-gradient-to-b from-white/30 to-transparent" />
-                    {/* Frosted edge glow */}
-                    <div className="absolute inset-0 rounded-3xl" style={{ boxShadow: 'inset 0 1px 1px rgba(255, 255, 255, 0.6)' }} />
-                    {/* Curved glossy blob effect */}
-                    <motion.div
-                      className="absolute"
-                      animate={{ 
-                        x: ['-60%', '120%'],
-                        y: ['-20%', '20%']
-                      }}
-                      transition={{ 
-                        duration: 4, 
-                        repeat: Infinity, 
-                        repeatDelay: 2,
-                        ease: 'easeInOut' 
-                      }}
-                      style={{ 
-                        width: '60%',
-                        height: '80%',
-                        top: '20%',
-                        left: '20%',
-                        background: 'radial-gradient(ellipse at center, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.15) 40%, transparent 70%)',
-                        filter: 'blur(30px)',
-                        transform: 'rotate(-25deg)',
-                        borderRadius: '50%'
-                      }}
-                    />
-                    <h3 className="text-xl font-black text-white text-center relative z-10 drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]">{skill.title}</h3>
-                  </div>
-                
-                {/* Back Side - Mobile Only */}
-                <div 
-                  className="absolute inset-0 w-full bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl p-6 border border-gray-700"
-                  style={{ 
-                    backfaceVisibility: 'hidden',
-                    transform: 'rotateY(180deg)'
-                  }}
-                >
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${skill.color} flex items-center justify-center`}>
-                      <skill.icon className="w-5 h-5 text-white" strokeWidth={2.5} />
-                    </div>
-                    <div>
-                      <h3 className="text-base font-bold text-white">{skill.title}</h3>
-                      <p className="text-gray-400 text-xs mb-3">{skill.description}</p>
-                    </div>
-                  </div>
-                  
-                  <div className="space-y-1.5">
-                    {skill.items.map((item, i) => (
-                      <div key={i} className="flex items-center gap-2">
-                        <div className={`w-1.5 h-1.5 rounded-full bg-gradient-to-r ${skill.color}`} />
-                        <span className="text-gray-300 text-[12px]">{item}</span>
-                      </div>
-                    ))}
-                  </div>
+              <div className="flex items-start justify-start gap-3 md:gap-4 mb-3">
+                <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${skill.color} flex items-center justify-center`}>
+                  <skill.icon className="w-5 h-5 text-white" strokeWidth={2.5} />
                 </div>
+                <h3 className="text-lg md:text-xl font-bold text-white">{skill.title}</h3>
               </div>
-              </motion.div>
+              <p className="text-gray-400 text-xs md:text-sm mb-3 md:mb-4">{skill.description}</p>
               
-              {/* Desktop: Normal Card */}
-              <div className="hidden md:block card-hover bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl p-6 border border-gray-700">
-                <div className="flex items-start justify-start gap-4">
-                  <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${skill.color} flex items-center justify-center mb-3`}>
-                    <skill.icon className="w-5 h-5 text-white" strokeWidth={2.5} />
+              <div className="space-y-1.5 md:space-y-2">
+                {skill.items.map((item, i) => (
+                  <div key={i} className="flex items-center gap-2">
+                    <div className={`w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-gradient-to-r ${skill.color}`} />
+                    <span className="text-gray-300 text-xs md:text-sm">{item}</span>
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-3">{skill.title}</h3>
-                </div>
-                <p className="text-gray-400 text-sm mb-2">{skill.description}</p>
-                
-                <div className="space-y-2">
-                  {skill.items.map((item, i) => (
-                    <div key={i} className="flex items-center gap-2">
-                      <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${skill.color}`} />
-                      <span className="text-gray-300 text-sm">{item}</span>
-                    </div>
-                  ))}
-                </div>
+                ))}
               </div>
             </motion.div>
-          )})}
+          ))}
         </div>
       </div>
     </section>

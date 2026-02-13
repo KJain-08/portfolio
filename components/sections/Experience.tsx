@@ -3,8 +3,6 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { PhoneForSection } from '../PhoneParallax'
-import { useState } from 'react'
-import { ChevronRight } from 'lucide-react'
 
 const experiences = [
   {
@@ -15,8 +13,8 @@ const experiences = [
     description: 'E-commerce Platform Development',
     color: 'from-blue-500 to-blue-600',
     achievements: [
-      'Developed complete e-commerce platform with Next.js, Node.js, and MongoDB serving 500+ monthly active users',
-      'Integrated Razorpay payment gateway processing ₹2L+ in transactions',
+      'Developed complete e-commerce platform with Next.js, Node.js, and MongoDB.',
+      'Integrated Razorpay payment gateway processing online transactions',
       'Built comprehensive admin dashboard for inventory and order management',
       'Implemented real-time order tracking and notification system'
     ]
@@ -29,7 +27,7 @@ const experiences = [
     description: 'Restaurant Delivery Application',
     color: 'from-orange-500 to-orange-600',
     achievements: [
-      'Built Flutter-based food delivery application with 1000+ active users',
+      'Built Flutter-based food delivery application with active users',
       'Integrated Google Maps API for real-time delivery tracking and navigation',
       'Implemented WebSocket connections for live order status updates',
       'Developed admin dashboard for restaurant and delivery management'
@@ -52,23 +50,200 @@ const experiences = [
 
 export default function Experience() {
   const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true })
-  const [flippedCards, setFlippedCards] = useState<Set<number>>(new Set())
-  
-  const toggleFlip = (index: number) => {
-    setFlippedCards(prev => {
-      const newSet = new Set(prev)
-      if (newSet.has(index)) {
-        newSet.delete(index)
-      } else {
-        newSet.add(index)
-      }
-      return newSet
-    })
-  }
   
   return (
-    <section id="experience" className="min-h-screen w-full py-12 px-6 relative">
+    <section id="experience" className="min-h-screen w-full py-12 px-6 relative overflow-hidden">
       <PhoneForSection sectionId="experience" />
+      
+      {/* Moon-like gradient backgrounds */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-10 right-0 w-[500px] h-[500px] bg-gradient-radial from-blue-500/10 via-blue-500/5 to-transparent rounded-full blur-3xl" />
+        <div className="absolute bottom-20 left-0 w-[600px] h-[600px] bg-gradient-radial from-purple-500/10 via-purple-500/5 to-transparent rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/3 w-[400px] h-[400px] bg-gradient-radial from-cyan-500/8 via-cyan-500/3 to-transparent rounded-full blur-2xl" />
+      </div>
+      
+      {/* Animated floating objects - Mobile only */}
+      <div className="md:hidden absolute inset-0 pointer-events-none z-10">
+        {/* Floating blob 1 - Blue/Purple */}
+        <motion.div
+          animate={{ 
+            x: [0, 50, -30, 0],
+            y: [0, -60, 40, 0],
+            scale: [1, 1.2, 0.8, 1],
+          }}
+          transition={{ 
+            duration: 15, 
+            repeat: Infinity, 
+            ease: 'easeInOut' 
+          }}
+          className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-full blur-2xl"
+        />
+        
+        {/* Floating blob 2 - Orange/Pink */}
+        <motion.div
+          animate={{ 
+            x: [0, -40, 60, 0],
+            y: [0, 50, -40, 0],
+            scale: [1, 0.9, 1.3, 1],
+          }}
+          transition={{ 
+            duration: 18, 
+            repeat: Infinity, 
+            ease: 'easeInOut',
+            delay: 2
+          }}
+          className="absolute top-1/3 right-10 w-40 h-40 bg-gradient-to-br from-orange-500/20 to-pink-500/20 rounded-full blur-2xl"
+        />
+        
+        {/* Floating blob 3 - Cyan/Blue */}
+        <motion.div
+          animate={{ 
+            x: [0, 70, -50, 0],
+            y: [0, -40, 30, 0],
+            scale: [1, 1.1, 0.9, 1],
+          }}
+          transition={{ 
+            duration: 20, 
+            repeat: Infinity, 
+            ease: 'easeInOut',
+            delay: 4
+          }}
+          className="absolute bottom-1/4 left-5 w-36 h-36 bg-gradient-to-br from-cyan-500/20 to-blue-500/20 rounded-full blur-2xl"
+        />
+        
+        {/* Small floating circles */}
+        <motion.div
+          animate={{ 
+            y: [0, -100, 0],
+            opacity: [0.3, 0.6, 0.3]
+          }}
+          transition={{ 
+            duration: 8, 
+            repeat: Infinity, 
+            ease: 'easeInOut' 
+          }}
+          className="absolute top-1/2 left-1/4 w-16 h-16 border-2 border-purple-500/30 rounded-full"
+        />
+        
+        <motion.div
+          animate={{ 
+            y: [0, 80, 0],
+            opacity: [0.2, 0.5, 0.2]
+          }}
+          transition={{ 
+            duration: 10, 
+            repeat: Infinity, 
+            ease: 'easeInOut',
+            delay: 3
+          }}
+          className="absolute bottom-1/3 right-1/4 w-20 h-20 border-2 border-orange-500/30 rounded-full"
+        />
+        
+        {/* Animated dots */}
+        <motion.div
+          animate={{ 
+            x: [0, 30, 0],
+            y: [0, -50, 0],
+          }}
+          transition={{ 
+            duration: 6, 
+            repeat: Infinity, 
+            ease: 'easeInOut' 
+          }}
+          className="absolute top-1/4 right-1/3 w-3 h-3 bg-blue-400/50 rounded-full"
+        />
+        
+        <motion.div
+          animate={{ 
+            x: [0, -40, 0],
+            y: [0, 60, 0],
+          }}
+          transition={{ 
+            duration: 7, 
+            repeat: Infinity, 
+            ease: 'easeInOut',
+            delay: 2
+          }}
+          className="absolute bottom-1/2 left-1/3 w-2 h-2 bg-purple-400/50 rounded-full"
+        />
+        
+        {/* Additional floating blobs */}
+        <motion.div
+          animate={{ 
+            x: [0, 45, -35, 0],
+            y: [0, -45, 30, 0],
+            scale: [1, 1.1, 0.9, 1],
+          }}
+          transition={{ 
+            duration: 14, 
+            repeat: Infinity, 
+            ease: 'easeInOut',
+            delay: 1
+          }}
+          className="absolute top-1/4 right-1/4 w-28 h-28 bg-gradient-to-br from-yellow-500/15 to-orange-500/15 rounded-full blur-xl"
+        />
+        
+        <motion.div
+          animate={{ 
+            x: [0, -50, 40, 0],
+            y: [0, 50, -35, 0],
+            scale: [1, 0.85, 1.15, 1],
+          }}
+          transition={{ 
+            duration: 16, 
+            repeat: Infinity, 
+            ease: 'easeInOut',
+            delay: 6
+          }}
+          className="absolute bottom-1/4 right-1/3 w-32 h-32 bg-gradient-to-br from-teal-500/15 to-cyan-500/15 rounded-full blur-xl"
+        />
+        
+        {/* More circles and dots */}
+        <motion.div
+          animate={{ 
+            x: [0, 25, 0],
+            y: [0, -70, 0],
+            opacity: [0.2, 0.5, 0.2],
+            rotate: [0, 180, 360]
+          }}
+          transition={{ 
+            duration: 11, 
+            repeat: Infinity, 
+            ease: 'easeInOut',
+            delay: 2
+          }}
+          className="absolute top-2/3 left-1/4 w-16 h-16 border border-cyan-500/25 rounded-full"
+        />
+        
+        <motion.div
+          animate={{ 
+            x: [0, 30, 0],
+            y: [0, 45, 0],
+          }}
+          transition={{ 
+            duration: 8.5, 
+            repeat: Infinity, 
+            ease: 'easeInOut',
+            delay: 4
+          }}
+          className="absolute top-1/3 left-1/2 w-2.5 h-2.5 bg-orange-400/60 rounded-full"
+        />
+        
+        <motion.div
+          animate={{ 
+            x: [0, -25, 0],
+            y: [0, -40, 0],
+          }}
+          transition={{ 
+            duration: 6.5, 
+            repeat: Infinity, 
+            ease: 'easeInOut',
+            delay: 1.5
+          }}
+          className="absolute bottom-1/3 right-2/3 w-2 h-2 bg-teal-400/60 rounded-full"
+        />
+      </div>
+      
       <div className="max-w-6xl mx-auto md:mr-10" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -81,139 +256,40 @@ export default function Experience() {
           </h2>
         </motion.div>
         
-        <div className="space-y-3">
-          {experiences.map((exp, index) => {
-            const isFlipped = flippedCards.has(index)
-            
-            return (
+        <div className="space-y-3 md:space-y-4">
+          {experiences.map((exp, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, x: -30 }}
               animate={inView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.2 }}
-              className="relative"
-              style={{ perspective: '1000px' }}
+              className="card-hover bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl md:rounded-3xl p-4 md:p-8 border border-gray-700"
             >
-              {/* Mobile: Flip Card */}
-              <motion.div
-                animate={{ y: [0, -10, 0] }}
-                transition={{
-                  y: {
-                    duration: 2.8,
-                    repeat: Infinity,
-                    ease: 'easeInOut',
-                    delay: index * 0.3
-                  }
-                }}
-                className="md:hidden"
-              >
-                <div 
-                  className={`relative w-full transition-transform duration-500 cursor-pointer`}
-                  style={{
-                    transformStyle: 'preserve-3d',
-                    transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)'
-                  }}
-                  onClick={() => toggleFlip(index)}
-                >
-                  {/* Front Side - Mobile Only */}
-                  <div 
-                    className={`relative w-full h-72 rounded-3xl p-6 border-[0.5px] border-white/25 flex flex-col items-center justify-center overflow-hidden`}
-                    style={{ 
-                      backfaceVisibility: 'hidden',
-                      background: 'rgba(255, 255, 255, 0.1)',
-                      backdropFilter: 'blur(20px) saturate(180%)',
-                      WebkitBackdropFilter: 'blur(20px) saturate(180%)',
-                      boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.37), inset 0 0 0 0.5px rgba(255, 255, 255, 0.2)',
-                      transform: 'translateZ(20px)'
-                    }}
-                  >
-                    {/* Subtle gradient tint from experience color */}
-                    <div className={`absolute inset-0 bg-gradient-to-br ${exp.color} opacity-65`} />
-                    {/* Top glass highlight */}
-                    <div className="absolute top-0 left-0 right-0 h-1/5 bg-gradient-to-b from-white/30 to-transparent" />
-                    {/* Frosted edge glow */}
-                    <div className="absolute inset-0 rounded-3xl" style={{ boxShadow: 'inset 0 1px 1px rgba(255, 255, 255, 0.6)' }} />
-                    {/* Curved glossy blob effect */}
-                    {/* <motion.div
-                      className="absolute"
-                      animate={{ 
-                        x: ['-60%', '120%'],
-                        y: ['-20%', '20%']
-                      }}
-                      transition={{ 
-                        duration: 4, 
-                        repeat: Infinity, 
-                        repeatDelay: 2,
-                        ease: 'easeInOut' 
-                      }}
-                      style={{ 
-                        width: '60%',
-                        height: '80%',
-                        top: '20%',
-                        left: '20%',
-                        background: 'radial-gradient(ellipse at center, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.15) 40%, transparent 70%)',
-                        filter: 'blur(30px)',
-                        transform: 'rotate(-25deg)',
-                        borderRadius: '50%'
-                      }}
-                    /> */}
-                    <h3 className="text-xl font-black text-white text-center mb-2 relative z-10 drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]">{exp.title}</h3>
-                    <p className="text-sm text-white/95 text-center relative z-10 drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]">{exp.company}</p>
-                  </div>
-                
-                {/* Back Side - Mobile Only */}
-                <div 
-                  className="absolute inset-0 w-full bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl p-6 border border-gray-700 "
-                  style={{ 
-                    backfaceVisibility: 'hidden',
-                    transform: 'rotateY(180deg)'
-                  }}
-                >
-                  <h3 className="text-lg font-bold text-white mb-1">{exp.title}</h3>
-                  <p className={`text-sm font-semibold mb-3 bg-gradient-to-r ${exp.color} bg-clip-text text-transparent`}>
-                    {exp.company}
+              <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-2 md:mb-3">
+                <div>
+                  <h3 className="text-lg md:text-2xl font-bold text-white mb-1">{exp.title}</h3>
+                  <p className={`text-sm md:text-base font-semibold mb-1 bg-gradient-to-r ${exp.color} bg-clip-text text-transparent`}>
+                    {exp.company} • {exp.type}
                   </p>
-                  
-                  <ul className="space-y-1.5 text-gray-300">
-                    {exp.achievements.map((achievement, i) => (
-                      <li key={i} className="flex gap-2 text-xs">
-                        <span className={`mt-0.5 bg-gradient-to-r ${exp.color} bg-clip-text text-transparent`}>▹</span>
-                        <span className='text-[12px]'>{achievement}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  <p className="text-gray-400 text-xs md:text-sm">{exp.description}</p>
+                </div>
+                <div className="mt-2 md:mt-0">
+                  <span className={`px-3 py-1 md:px-4 md:py-2 rounded-full text-xs md:text-sm font-bold border bg-gradient-to-r ${exp.color} bg-opacity-20 backdrop-blur-sm`}>
+                    {exp.period}
+                  </span>
                 </div>
               </div>
-              </motion.div>
               
-              {/* Desktop: Normal Card */}
-              <div className="hidden md:block card-hover bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl p-8 border border-gray-700">
-                <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-3">
-                  <div>
-                    <h3 className="text-2xl font-bold text-white mb-1">{exp.title}</h3>
-                    <p className={`font-semibold mb-1 bg-gradient-to-r ${exp.color} bg-clip-text text-transparent`}>
-                      {exp.company} • {exp.type}
-                    </p>
-                    <p className="text-gray-400 text-sm">{exp.description}</p>
-                  </div>
-                  <div className="mt-4 md:mt-0">
-                    <span className={`px-4 py-2 rounded-full text-sm font-bold border bg-gradient-to-r ${exp.color} bg-opacity-20 backdrop-blur-sm`}>
-                      {exp.period}
-                    </span>
-                  </div>
-                </div>
-                
-                <ul className="space-y-1 text-gray-300">
-                  {exp.achievements.map((achievement, i) => (
-                    <li key={i} className="flex gap-2">
-                      <span className={`mt-0 bg-gradient-to-r ${exp.color} bg-clip-text text-transparent`}>▹</span>
-                      <span>{achievement}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <ul className="space-y-1 md:space-y-2 text-gray-300">
+                {exp.achievements.map((achievement, i) => (
+                  <li key={i} className="flex gap-2">
+                    <span className={`mt-0.5 md:mt-1 bg-gradient-to-r ${exp.color} bg-clip-text text-transparent`}>▹</span>
+                    <span className="text-xs md:text-base">{achievement}</span>
+                  </li>
+                ))}
+              </ul>
             </motion.div>
-          )})}
+          ))}
         </div>
       </div>
     </section>

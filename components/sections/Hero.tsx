@@ -8,15 +8,15 @@ import { PhoneForSection } from '../PhoneParallax'
 
 export default function Hero() {
   const [ref, inView] = useInView({ threshold: 0.3, triggerOnce: true })
-  const [counts, setCounts] = useState({ apps: 0, users: 0, experience: 0 })
+  const [counts, setCounts] = useState({ apps: 0, projects: 0, experience: 0 })
   
   useEffect(() => {
     if (!inView) return
     
     const interval = setInterval(() => {
       setCounts(prev => ({
-        apps: prev.apps < 6 ? prev.apps + 1 : 6,
-        users: prev.users < 1200 ? prev.users + 50 : 1200,
+        apps: prev.apps < 4 ? prev.apps + 1 : 4,
+        projects: prev.projects < 6 ? prev.projects + 1 : 6,
         experience: prev.experience < 2 ? prev.experience + 1 : 2
       }))
     }, 40)
@@ -25,8 +25,215 @@ export default function Hero() {
   }, [inView])
   
   return (
-    <section id="hero" className="min-h-screen w-full flex items-start justify-center px-4 py-6 md:py-10 relative">
+    <section id="hero" className="min-h-screen w-full flex items-start justify-center px-4 py-6 md:py-10 relative overflow-hidden">
       <PhoneForSection sectionId="hero" />
+      
+      {/* Moon-like gradient backgrounds */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 right-0 w-[700px] h-[700px] bg-gradient-radial from-blue-500/12 via-blue-500/6 to-transparent rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-[650px] h-[650px] bg-gradient-radial from-purple-500/12 via-purple-500/6 to-transparent rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-radial from-pink-500/8 via-pink-500/4 to-transparent rounded-full blur-3xl" />
+      </div>
+      
+      {/* Animated floating objects - Mobile only */}
+      <div className="md:hidden absolute inset-0 pointer-events-none z-10">
+        {/* Large floating blob 1 - Blue/Purple */}
+        <motion.div
+          animate={{ 
+            x: [0, 60, -40, 0],
+            y: [0, -70, 50, 0],
+            scale: [1, 1.3, 0.8, 1],
+          }}
+          transition={{ 
+            duration: 20, 
+            repeat: Infinity, 
+            ease: 'easeInOut' 
+          }}
+          className="absolute top-1/4 right-5 w-48 h-48 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-full blur-3xl"
+        />
+        
+        {/* Large floating blob 2 - Purple/Pink */}
+        <motion.div
+          animate={{ 
+            x: [0, -50, 60, 0],
+            y: [0, 65, -40, 0],
+            scale: [1, 0.85, 1.25, 1],
+          }}
+          transition={{ 
+            duration: 18, 
+            repeat: Infinity, 
+            ease: 'easeInOut',
+            delay: 3
+          }}
+          className="absolute bottom-1/3 left-8 w-52 h-52 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-full blur-3xl"
+        />
+        
+        {/* Medium floating blob - Cyan */}
+        <motion.div
+          animate={{ 
+            x: [0, 70, -50, 0],
+            y: [0, -50, 40, 0],
+            scale: [1, 1.15, 0.9, 1],
+          }}
+          transition={{ 
+            duration: 16, 
+            repeat: Infinity, 
+            ease: 'easeInOut',
+            delay: 5
+          }}
+          className="absolute top-2/3 left-1/4 w-40 h-40 bg-gradient-to-br from-cyan-500/20 to-blue-400/20 rounded-full blur-2xl"
+        />
+        
+        {/* Floating rings */}
+        <motion.div
+          animate={{ 
+            y: [0, -90, 0],
+            x: [0, 30, 0],
+            opacity: [0.2, 0.5, 0.2],
+            rotate: [0, 180, 360]
+          }}
+          transition={{ 
+            duration: 12, 
+            repeat: Infinity, 
+            ease: 'easeInOut' 
+          }}
+          className="absolute top-1/3 left-1/4 w-24 h-24 border-2 border-blue-500/30 rounded-full"
+        />
+        
+        <motion.div
+          animate={{ 
+            y: [0, 75, 0],
+            opacity: [0.3, 0.6, 0.3],
+            rotate: [360, 180, 0]
+          }}
+          transition={{ 
+            duration: 14, 
+            repeat: Infinity, 
+            ease: 'easeInOut',
+            delay: 4
+          }}
+          className="absolute bottom-1/4 right-1/3 w-20 h-20 border-2 border-purple-500/30 rounded-full"
+        />
+        
+        {/* Small animated dots */}
+        <motion.div
+          animate={{ 
+            x: [0, 45, 0],
+            y: [0, -60, 0],
+          }}
+          transition={{ 
+            duration: 8, 
+            repeat: Infinity, 
+            ease: 'easeInOut' 
+          }}
+          className="absolute top-1/2 right-1/4 w-3 h-3 bg-blue-400/60 rounded-full"
+        />
+        
+        <motion.div
+          animate={{ 
+            x: [0, -40, 0],
+            y: [0, 50, 0],
+          }}
+          transition={{ 
+            duration: 9, 
+            repeat: Infinity, 
+            ease: 'easeInOut',
+            delay: 3
+          }}
+          className="absolute bottom-1/3 left-1/3 w-2 h-2 bg-purple-400/60 rounded-full"
+        />
+        
+        {/* Additional floating elements */}
+        <motion.div
+          animate={{ 
+            x: [0, 55, -45, 0],
+            y: [0, -55, 45, 0],
+            scale: [1, 1.2, 0.85, 1],
+          }}
+          transition={{ 
+            duration: 19, 
+            repeat: Infinity, 
+            ease: 'easeInOut',
+            delay: 2
+          }}
+          className="absolute top-1/2 right-1/4 w-44 h-44 bg-gradient-to-br from-indigo-500/15 to-violet-500/15 rounded-full blur-3xl"
+        />
+        
+        <motion.div
+          animate={{ 
+            x: [0, -60, 50, 0],
+            y: [0, 60, -45, 0],
+            scale: [1, 0.9, 1.2, 1],
+          }}
+          transition={{ 
+            duration: 21, 
+            repeat: Infinity, 
+            ease: 'easeInOut',
+            delay: 7
+          }}
+          className="absolute bottom-1/2 left-1/2 w-46 h-46 bg-gradient-to-br from-fuchsia-500/15 to-pink-500/15 rounded-full blur-3xl"
+        />
+        
+        <motion.div
+          animate={{ 
+            y: [0, -80, 0],
+            opacity: [0.25, 0.55, 0.25],
+            rotate: [0, 180, 360]
+          }}
+          transition={{ 
+            duration: 13, 
+            repeat: Infinity, 
+            ease: 'easeInOut',
+            delay: 2
+          }}
+          className="absolute bottom-2/3 right-1/4 w-18 h-18 border border-cyan-500/25 rounded-full"
+        />
+        
+        <motion.div
+          animate={{ 
+            y: [0, 65, 0],
+            x: [0, -25, 0],
+            opacity: [0.3, 0.6, 0.3],
+            rotate: [360, 180, 0]
+          }}
+          transition={{ 
+            duration: 15, 
+            repeat: Infinity, 
+            ease: 'easeInOut',
+            delay: 5
+          }}
+          className="absolute top-1/4 left-2/3 w-20 h-20 border border-fuchsia-500/25 rounded-full"
+        />
+        
+        <motion.div
+          animate={{ 
+            x: [0, 40, 0],
+            y: [0, -55, 0],
+          }}
+          transition={{ 
+            duration: 7.5, 
+            repeat: Infinity, 
+            ease: 'easeInOut',
+            delay: 1
+          }}
+          className="absolute bottom-1/4 right-2/3 w-3 h-3 bg-cyan-400/60 rounded-full"
+        />
+        
+        <motion.div
+          animate={{ 
+            x: [0, -35, 0],
+            y: [0, 60, 0],
+          }}
+          transition={{ 
+            duration: 8.5, 
+            repeat: Infinity, 
+            ease: 'easeInOut',
+            delay: 4
+          }}
+          className="absolute top-2/3 left-1/4 w-2.5 h-2.5 bg-violet-400/60 rounded-full"
+        />
+      </div>
+      
       <div className="max-w-4xl mx-auto text-center" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -90,16 +297,16 @@ export default function Hero() {
             <div className="text-2xl md:text-4xl font-black text-gradient mb-1">
               {counts.apps}+
             </div>
-            <div className="text-gray-400 text-[10px] md:text-sm font-semibold">Production Apps</div>
+            <div className="text-gray-400 text-[10px] md:text-sm font-semibold">Client Projects</div>
           </div>
           <div className="relative rounded-2xl md:rounded-3xl p-3 md:p-6 border  backdrop-blur-sm"
             style={{ 
               background: 'rgba(255, 255, 255, 0.05)',
             }}>
             <div className="text-2xl md:text-4xl font-black text-gradient mb-1">
-              {counts.users}+
+              {counts.projects}+
             </div>
-            <div className="text-gray-400 text-[10px] md:text-sm font-semibold">Users Impacted</div>
+            <div className="text-gray-400 text-[10px] md:text-sm font-semibold">Projects Built</div>
           </div>
           <div className="relative rounded-2xl md:rounded-3xl p-3 md:p-6 border  backdrop-blur-sm"
             style={{ 
